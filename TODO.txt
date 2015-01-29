@@ -1,0 +1,53 @@
+Algo Génétique:
+
+One Max
+
+Croisements:
+	m??-point	- done (cross-point)
+	uniforme	- done
+
+Mutations:
+	1-flip (1 bit flippé au hasard parmi N)			- done (k-flip avec k = 1)
+	3-flip							- done (see above)
+	5-flip							- done (ditto)
+	bit-flip (chaque bit peut changer avec proba de 1/N)	- to verify
+
+Selection des 2 parents:
+	aléatoire					- done
+	best						- done
+	tournoi (2 meilleurs parmi T choisis au hasard)	- done
+	(custom) worst-best				- done
+
+Insertion:
+	age (remplacer les plus anciens (gérer une file))	- done
+	remplacer les moins bons				- done
+	(custom) compare with parents				- done
+
+algo:
+	boucle				-
+		selection parents	-
+		croisement		- OK
+		mutation enfants	-
+		insertion		-
+	finboucle			-
+
+==> étudier (avec graphiques):
+	impact des composants --> fixer 3 composants et faire varier le 4ème
+		selection
+		croisement
+		mutation
+		insertion
+
+ex: Pour étudier le croisement, selection tournois, insertion age
+    Pareil pour la mutation
+
+taille population: 200
+
+
+===========================================
+Insérer une méthode de sélection des opérateurs automatique
+
+Roulette proportionnelle	-
+Adaptive Pursuit		-avec uniquement
+UCB				-les mutations
+Roulette uniforme		-

@@ -1,0 +1,48 @@
+Problème du "One Max"
+
+individus de taille n binaires
+
+ex: n = 10	i1 = 0101100001
+
+fitness = sum(bi)	f(i1) = 4
+
+P initiale = tous les individus 0---0
+
+mutation:
+	bit-flip: chaque bit a une probabilité 1/n de changer
+	1-flip: on change 1 bit au hasard
+	k-flip: on change k bits
+
+croisement:
+	1 point:
+		|  A  |  B  |
+		|  C  |  D  |
+		    v==v
+		|  A  |  D  |
+		|  C  |  B  |
+
+	uniforme:
+		on échange de manière aléatoire
+
+
+
+
+évaluer nos opérations selon différents critères
+
+mesure qualité:
+	fitness meilleur
+	fitness moyenne
+	fitness écart type
+
+diversification:
+	calculer distance de Hamming sur population
+		calculer individu moyen
+		moyenne des distances avec individu moyen
+		pas forcement super extra
+	calculer entropie
+		entropy(P) =
+			-sum(i=1,n,sum(j=0,1, (nij/card(P)) log(nij/card(P)) )) / nlog2
+
+temps || nombre de croisements
+
+==> trace d'exécution: stocker les != fitness, l'entropie et le temps/croisements

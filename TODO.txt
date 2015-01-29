@@ -70,7 +70,7 @@ trace:
 		fitness best	- done
 		average		- done
 		std deviation	- done
-		entropy
+		entropy		- need to figure out what the fuck it is supposed to be
 
 ===========================================
 Insérer une méthode de sélection des opérateurs automatique

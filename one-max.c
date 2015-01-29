@@ -48,9 +48,13 @@ int fitnessStandardDeviation() {
     return sqrt(hjvo / average);
 }
 
-double entropy() {
-  printf("\nNOT IMPLEMENTED");
-  return 0.0;
+double entropy() { // ?????
+  double res = 0.0;
+  for (int i = 0; i < pop_size; i++) {
+    double x = (population[i]->fitness / population[i]->size);
+    res += (x * log(x)) / (pop_size * log(2));
+  }
+  return -res;
 }
 
 void printPopulation() {

@@ -1,5 +1,17 @@
 #include "mutation.h"
 
+#include <string.h>
+
+Mutation mutateIdentify(char* arg) {
+  if (strcmp(arg, "bit_flip")) {
+    return BIT_FLIP;
+  } else if (strcmp(arg, "k_flip")) {
+    return K_FLIP;
+  } else {
+    return K_FLIP;
+  }
+}
+
 void flipBit(Instance* instance, unsigned int toFlip, Instance* origin) {
   instance->bits[toFlip] = !origin->bits[toFlip];
 }
@@ -7,13 +19,22 @@ void flipBit(Instance* instance, unsigned int toFlip, Instance* origin) {
 Instance** bitFlip(Instance* a, Instance* b) {
   Instance** res = malloc(2 * sizeof(Instance*));
   res[0] = createInstance(a);
-  unsigned int i = rand() % a->size;
-  flipBit(res[0], i, a);
+  int chance = (1 / (float) a->size) * 100;
+  for (unsigned int i = 0; i < a->size; i++) {
+    int proba = rand() % 100;
+    if (proba <= chance) {
+      flipBit(res[0], i, a);
+    }
+  }
   res[0]->fitness = calculateFitness(res[0]);
 
   res[1] = createInstance(b);
-  i = rand() % b->size;
-  flipBit(res[1], i, b);
+  for (unsigned int i = 0; i < a->size; i++) {
+    float proba = rand();
+    if (proba <= chance) {
+      flipBit(res[1], i, b);
+    }
+  }
   res[1]->fitness = calculateFitness(res[1]);
   return res;
 }

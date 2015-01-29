@@ -19,6 +19,11 @@ typedef enum e_insertion Insertion;
 extern unsigned int age_index;
 
 /**
+ * Defaults to AGE.
+ */
+Insertion insertIdentify(char* arg);
+
+/**
  * Compares an offspring with its parents and keep whoever is best.
  * Note: assumes that offspring has a size of 2.
  */

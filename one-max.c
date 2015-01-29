@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <time.h>
+#include <string.h>
 
 void initialize() {
   population = malloc(pop_size * sizeof(Instance*));
@@ -61,57 +62,78 @@ void printPopulation() {
   }
 }
 
-void printRecap() {
-  printf("\nRun configuration:");
-  printf("\n\tSelection =\t");
+char* getRecap(char* res) { // stupid c string handling
+  char buffer[10];
+  strcat(res, "\nRun configuration:");
+  strcat(res, "\n\tSelection =\t");
   switch (selection) {
   case BEST:
-    printf("best");
+    strcat(res, "best");
     break;
   case RANDOM:
-    printf("random");
+    strcat(res, "random");
     break;
   case WORST_BEST:
-    printf("worst x best");
+    strcat(res, "worst x best");
     break;
   case TOURNAMENT:
-    printf("tournament of %d individuals", t);
+    strcat(res, "tournament of ");
+    sprintf(buffer, "%d", t);
+    strcat(res, buffer);
+    strcat(res, " individuals");
     break;
   }
-  printf("\n\tCrossover =\t");
+  strcat(res, "\n\tCrossover =\t");
   switch (crossover) {
   case CROSS_POINT:
-    printf("cross-point");
+    strcat(res, "cross-point");
     break;
   case CROSS_UNIFORM:
-    printf("cross-uniform");
+    strcat(res, "cross-uniform");
     break;
   }
-  printf("\n\tMutation  =\t");
+  strcat(res, "\n\tMutation  =\t");
   switch (mutation) {
   case BIT_FLIP:
-    printf("bit-flip");
+    strcat(res, "bit-flip");
     break;
   case K_FLIP:
-    printf("k-flip\t(k=%d)", k);
+    strcat(res, "k-flip\t(k=");
+    sprintf(buffer, "%d", k);
+    strcat(res, buffer);
+    strcat(res, ")");
     break;
   }
-  printf("\n\tInsertion =\t");
+  strcat(res, "\n\tInsertion =\t");
   switch (insertion) {
   case COMPARE_WITH_PARENTS:
-    printf("compare with parents");
+    strcat(res, "compare with parents");
     break;
   case AGE:
-    printf("replace oldest");
+    strcat(res, "replace oldest");
     break;
   case REPLACE_WORST:
-    printf("replace worst");
+    strcat(res, "replace worst");
     break;
   }
-  printf("\n\tFitness: best               = %d", fitnessBest());
-  printf("\n\tFitness: average            = %d", fitnessAverage());
-  printf("\n\tFitness: standard deviation = %d", fitnessStandardDeviation());
-  printf("\n\tENTROPY = %f", entropy());
+  strcat(res, "\n\tFitness: best               = ");
+  sprintf(buffer, "%d", fitnessBest());
+  strcat(res, buffer);
+  strcat(res, "\n\tFitness: average            = ");
+  sprintf(buffer, "%d", fitnessAverage());
+  strcat(res, buffer);
+  strcat(res, "\n\tFitness: standard deviation = ");
+  sprintf(buffer, "%d", fitnessStandardDeviation());
+  strcat(res, buffer);
+  strcat(res, "\n\tENTROPY = ");
+  sprintf(buffer, "%f", entropy());
+  strcat(res, buffer);
+  return res;
+}
+
+void printRecap() {
+  char buffer[500];
+  printf("%s", getRecap(buffer));
 }
 
 void printTrace(int iteration) {
@@ -123,25 +145,51 @@ void printTrace(int iteration) {
 	  entropy());
 }
 
+void dealWithArgs(int argc, char** argv) {
+  for (int i = 0; i < argc - 1; i++) {
+    if (strcmp(argv[i],  "-pop_size")) {
+      pop_size = atoi(argv[++i]);
+    } else if (strcmp(argv[i], "-i")) {
+      numberOfIterations = atoi(argv[++i]);
+    } else if (strcmp(argv[i], "-select")) {
+      selection = selectIdentify(argv[++i]);
+    } else if (strcmp(argv[i], "-t")) {
+      t = atoi(argv[++i]);
+    } else if (strcmp(argv[i], "-cross")) {
+      crossover = crossIdentify(argv[++i]);
+    } else if (strcmp(argv[i], "-mutate")) {
+      mutation = mutateIdentify(argv[++i]);
+    } else if (strcmp(argv[i], "-k")) {
+      k = atoi(argv[++i]);
+    } else if (strcmp(argv[i], "-insert")) {
+      insertion = insertIdentify(argv[++i]);
+    } else {
+      printf("\nUnrecognised argument: %s", argv[i]);
+    }
+  }
+}
 
 
 
-
-int main() {
+int main(int argc, char** argv) {
   pop_size = POP_SIZE;
   selection = TOURNAMENT;
   crossover = CROSS_POINT;
-  mutation = K_FLIP;
+  mutation = BIT_FLIP;
   insertion = REPLACE_WORST;
   numberOfIterations = DEFAULT_NUMBER_OF_ITERATIONS;
   k = DEFAULT_K_FLIP;
   t = DEFAULT_T;
+
+  dealWithArgs(argc, argv);
 
   trace_file = fopen("trace.csv","w");
   initialize();
   srand(time(NULL));
 
   printf("Initialization complete\n");
+  char buffer[500];
+  fprintf(trace_file, "%s\n", getRecap(buffer));
   for (int h = 1; h <= numberOfIterations; h++) {
     //printf("#%d: Beginning target selection...\n", h);
     unsigned int target_1, target_2;
@@ -209,7 +257,7 @@ int main() {
     printf("#%d population status:\n", h);
     printPopulation();
     printf("outputting to trace file\n");
-    printTrace();
+    printTrace(0);
   }
   printRecap();
   fclose(trace_file);

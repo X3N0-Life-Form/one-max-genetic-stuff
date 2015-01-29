@@ -10,6 +10,11 @@ enum e_mutation {
 };
 typedef enum e_mutation Mutation;
 
+/**
+ * Defaults to K_FLIP.
+ */
+Mutation mutateIdentify(char* arg);
+
 Instance** bitFlip(Instance* a, Instance* b);
 void flipBit(Instance* flipped, unsigned int toFlip, Instance* origin);
 /**

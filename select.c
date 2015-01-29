@@ -1,5 +1,21 @@
 #include "select.h"
 
+#include <string.h>
+
+Selection selectIdentify(char* arg) {
+  if (strcmp(arg, "best")) {
+    return BEST;
+  } else if (strcmp(arg, "random")) {
+    return RANDOM;
+  } else if (strcmp(arg, "worst_best")) {
+    return WORST_BEST;
+  } else if (strcmp(arg, "tournament")) {
+    return TOURNAMENT;
+  } else {
+    return RANDOM;
+  }
+}
+
 unsigned int selectBest() {
   int best = 0;
   unsigned int bestTarget = 0;

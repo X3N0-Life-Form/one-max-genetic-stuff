@@ -12,6 +12,11 @@ enum e_selection {
 };
 typedef enum e_selection Selection;
 
+/**
+ * Defaults to RANDOM.
+ */
+Selection selectIdentify(char* arg);
+
 unsigned int selectBest();
 unsigned int selectBestWorseThan(unsigned int target);
 unsigned int selectRandom();
@@ -24,4 +29,6 @@ unsigned int* selectTournament(unsigned int* targets, unsigned int numberOfTarge
  * Selects t targets for a tournament selection.
  */
 unsigned int* selectTargetsForTournament(unsigned int t);
+
+
 #endif

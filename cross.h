@@ -12,6 +12,11 @@ enum e_crossover {
 typedef enum e_crossover Crossover;
 
 /**
+ * Defaults to CROSS_UNIFORM.
+ */
+Crossover crossIdentify(char* arg);
+
+/**
  * Cross cuts at a random point.
  */
 Instance** crossPoint(Instance* a, Instance* b);

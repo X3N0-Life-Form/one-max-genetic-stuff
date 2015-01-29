@@ -10,7 +10,7 @@ Mutations:
 	1-flip (1 bit flippé au hasard parmi N)			- done (k-flip avec k = 1)
 	3-flip							- done (see above)
 	5-flip							- done (ditto)
-	bit-flip (chaque bit peut changer avec proba de 1/N)	- to verify
+	bit-flip (chaque bit peut changer avec proba de 1/N)	- done
 
 Selection des 2 parents:
 	aléatoire					- done
@@ -24,12 +24,12 @@ Insertion:
 	(custom) compare with parents				- done
 
 algo:
-	boucle				-
+	boucle --------------------------
 		selection parents	-
 		croisement		- OK
 		mutation enfants	-
 		insertion		-
-	finboucle			-
+	finboucle -----------------------
 
 ==> étudier (avec graphiques):
 	impact des composants --> fixer 3 composants et faire varier le 4ème
@@ -43,6 +43,34 @@ ex: Pour étudier le croisement, selection tournois, insertion age
 
 taille population: 200
 
+argument handling:
+	pop_size		- done
+        selection		- done
+	t pour tournois		- done
+	croisement		- done
+        mutation		- done
+        k pour k-flip		- done
+        insertion		- done
+        nombre d'itérations	- done
+
+
+trace:
+	trace file auto-naming
+	parameters ------------------------------
+		pop size			-
+		selection			-
+			t pour tournois		-
+		croisement			- done
+		mutation			-
+			k pour k-flip		-
+		insertion			-
+		nombre d'itérations -------------
+
+	in each loop
+		fitness best	- done
+		average		- done
+		std deviation	- done
+		entropy
 
 ===========================================
 Insérer une méthode de sélection des opérateurs automatique

@@ -8,9 +8,9 @@
 #include "mutation.h"
 #include "insert.h"
 
-#define POP_SIZE 20
+#define POP_SIZE 200
 #define DEFAULT_SIZE 10
-#define DEFAULT_NUMBER_OF_ITERATIONS 30
+#define DEFAULT_NUMBER_OF_ITERATIONS 300
 
 #define DEFAULT_K_FLIP 3
 #define DEFAULT_T 5

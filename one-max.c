@@ -174,6 +174,71 @@ void dealWithArgs(int argc, char** argv) {
 }
 
 
+char* getTraceFileName(char* name) {
+  char buffer[10];
+  //pop_size
+  sprintf(buffer, "trace_%d_", pop_size);
+  strcat(name, buffer);
+
+  switch (selection) {
+  case BEST:
+    strcat(name, "b");
+    break;
+  case RANDOM:
+    strcat(name, "r");
+    break;
+  case WORST_BEST:
+    strcat(name, "wb");
+    break;
+  case TOURNAMENT:
+    sprintf(buffer, "t%d", t);
+    strcat(name, buffer);
+    break;
+  }
+  strcat(name, "_");
+  
+  switch (crossover) {
+  case CROSS_POINT:
+    strcat(name, "cp");
+    break;
+  case CROSS_UNIFORM:
+    strcat(name, "cu");
+    break;
+  }
+  strcat(name, "_");
+
+  switch (mutation) {
+  case BIT_FLIP:
+    strcat(name, "bf");
+    break;
+  case K_FLIP:
+    sprintf(buffer, "%df", k);
+    strcat(name, buffer);
+    break;
+  }
+  strcat(name, "_");
+
+  switch (insertion) {
+  case COMPARE_WITH_PARENTS:
+    strcat(name, "cwp");
+    break;
+  case AGE:
+    strcat(name, "a");
+    break;
+  case REPLACE_WORST:
+    strcat(name, "rw");
+    break;
+  }
+  strcat(name, "_");
+
+  //iterations
+  sprintf(buffer, "%d", numberOfIterations);
+  strcat(name, buffer);
+
+  strcat(name, ".csv");
+  return name;
+}
+
 
 int main(int argc, char** argv) {
   pop_size = POP_SIZE;
@@ -187,13 +252,15 @@ int main(int argc, char** argv) {
 
   dealWithArgs(argc, argv);
 
-  trace_file = fopen("trace.csv","w");
+  char fileName[100];
+  getTraceFileName(fileName);
+  trace_file = fopen(fileName,"w");
   initialize();
   srand(time(NULL));
 
   printf("Initialization complete\n");
-  char buffer[500];
-  fprintf(trace_file, "%s\n", getRecap(buffer));
+  //char buffer[500];
+  //fprintf(trace_file, "%s\n", getRecap(buffer));
   for (int h = 1; h <= numberOfIterations; h++) {
     //printf("#%d: Beginning target selection...\n", h);
     unsigned int target_1, target_2;

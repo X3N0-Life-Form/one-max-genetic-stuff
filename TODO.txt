@@ -55,7 +55,7 @@ argument handling:
 
 
 trace:
-	trace file auto-naming
+	trace file auto-naming			- done
 	parameters ------------------------------
 		pop size			-
 		selection			-

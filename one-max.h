@@ -36,6 +36,11 @@ unsigned int t;
  */
 unsigned int age_index;
 
+/**
+ * If set to true, uses automated algorithms.
+ */
+int automate;
+
 int fitnessBest();
 int fitnessAverage();
 int fitnessStandardDeviation();

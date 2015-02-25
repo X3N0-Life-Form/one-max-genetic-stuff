@@ -4,6 +4,9 @@
 #include <math.h>
 #include <time.h>
 #include <string.h>
+#include "smart_mutate.h"
+
+extern Stats stats;
 
 void initialize() {
   population = malloc(pop_size * sizeof(Instance*));
@@ -132,6 +135,13 @@ char* getRecap(char* res) { // stupid c string handling
   strcat(res, "\n\tENTROPY = ");
   sprintf(buffer, "%f", entropy());
   strcat(res, buffer);
+
+  strcat(res, "\n\nAlgorithm automation is ");
+  if (automate) {
+    strcat(res, "ON");
+  } else {
+    strcat(res, "OFF");
+  }
   return res;
 }
 
@@ -239,8 +249,17 @@ char* getTraceFileName(char* name) {
   return name;
 }
 
+////////////
+/// Main ///
+////////////
 
 int main(int argc, char** argv) {
+  //automate = 1;
+  stats.bit_flips = 1;
+  stats.bit_flip_gain = 1;
+  stats.k_flips = 1;
+  stats.k_flip_gain = 1;
+
   pop_size = POP_SIZE;
   selection = TOURNAMENT;
   crossover = CROSS_POINT;
@@ -262,6 +281,17 @@ int main(int argc, char** argv) {
   //char buffer[500];
   //fprintf(trace_file, "%s\n", getRecap(buffer));
   for (int h = 1; h <= numberOfIterations; h++) {
+    if (automate) {
+      mutation = customThingy();
+      switch (mutation) {
+      case BIT_FLIP:
+	printf("Automated choice: BIT_FLIP\n");
+	break;
+      case K_FLIP:
+	printf("Automated choice: K_FLIP\n");
+	break;
+      }
+    }
     //printf("#%d: Beginning target selection...\n", h);
     unsigned int target_1, target_2;
     // select

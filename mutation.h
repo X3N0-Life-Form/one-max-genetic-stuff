@@ -11,6 +11,18 @@ enum e_mutation {
 typedef enum e_mutation Mutation;
 
 /**
+ * Mutation's statistics structure.
+ */
+struct s_stats {
+  int bit_flips;
+  int bit_flip_gain;
+  int k_flips;
+  int k_flip_gain;
+};
+typedef struct s_stats Stats;
+Stats stats;
+
+/**
  * Defaults to K_FLIP.
  */
 Mutation mutateIdentify(char* arg);

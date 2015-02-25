@@ -6,6 +6,7 @@ One-Future
 *.aux
 *.log
 *.pdf
+*.backup
 
 # Object files
 *.o

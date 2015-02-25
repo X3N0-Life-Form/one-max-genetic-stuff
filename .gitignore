@@ -1,5 +1,11 @@
 *~
 One-Future
+*.csv
+
+# tex files
+*.aux
+*.log
+*.pdf
 
 # Object files
 *.o

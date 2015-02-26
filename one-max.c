@@ -168,7 +168,6 @@ void dealWithArgs(int argc, char** argv) {
     } else if (!strcmp(argv[i], "-i")) {
       numberOfIterations = atoi(argv[++i]);
     } else if (!strcmp(argv[i], "-select")) {
-      printf("am I here???\n");
       selection = selectIdentify(argv[++i]);
     } else if (!strcmp(argv[i], "-t")) {
       t = atoi(argv[++i]);
@@ -372,7 +371,7 @@ int main(int argc, char** argv) {
     // end of loop recap
     //printf("#%d population status:\n", h);
     //printPopulation();
-    printf("outputting to trace file\n");
+    //printf("outputting to trace file\n");
     printTrace(h);
   }
   printRecap();

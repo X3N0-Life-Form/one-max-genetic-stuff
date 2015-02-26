@@ -107,7 +107,6 @@ unsigned int* selectTargetsForTournament(unsigned int t) {
     }
     // if not, select it
     if (!getAnother) {
-      printf("ssss %d", count);
       res[count] = selection;
       count++;
     }

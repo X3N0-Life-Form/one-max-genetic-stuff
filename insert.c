@@ -5,11 +5,11 @@
 
 
 Insertion insertIdentify(char* arg) {
-  if (strcmp(arg, "compare_with_parents")) {
+  if (!strcmp(arg, "compare_with_parents")) {
     return COMPARE_WITH_PARENTS;
-  } else if (strcmp(arg, "age")) {
+  } else if (!strcmp(arg, "age")) {
     return AGE;
-  } else if (strcmp(arg, "replace_worst")) {
+  } else if (!strcmp(arg, "replace_worst")) {
     return REPLACE_WORST;
   } else {
     return AGE;

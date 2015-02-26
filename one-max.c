@@ -160,22 +160,23 @@ void printTrace(int iteration) {
 }
 
 void dealWithArgs(int argc, char** argv) {
-  for (int i = 0; i < argc - 1; i++) {
-    if (strcmp(argv[i],  "-pop_size")) {
+  for (int i = 1; i < argc - 1; i++) {
+    if (!strcmp(argv[i],  "-pop_size")) {
       pop_size = atoi(argv[++i]);
-    } else if (strcmp(argv[i], "-i")) {
+    } else if (!strcmp(argv[i], "-i")) {
       numberOfIterations = atoi(argv[++i]);
-    } else if (strcmp(argv[i], "-select")) {
+    } else if (!strcmp(argv[i], "-select")) {
+      printf("am I here???\n");
       selection = selectIdentify(argv[++i]);
-    } else if (strcmp(argv[i], "-t")) {
+    } else if (!strcmp(argv[i], "-t")) {
       t = atoi(argv[++i]);
-    } else if (strcmp(argv[i], "-cross")) {
+    } else if (!strcmp(argv[i], "-cross")) {
       crossover = crossIdentify(argv[++i]);
-    } else if (strcmp(argv[i], "-mutate")) {
+    } else if (!strcmp(argv[i], "-mutate")) {
       mutation = mutateIdentify(argv[++i]);
-    } else if (strcmp(argv[i], "-k")) {
+    } else if (!strcmp(argv[i], "-k")) {
       k = atoi(argv[++i]);
-    } else if (strcmp(argv[i], "-insert")) {
+    } else if (!strcmp(argv[i], "-insert")) {
       insertion = insertIdentify(argv[++i]);
     } else {
       printf("\nUnrecognised argument: %s", argv[i]);
@@ -355,8 +356,8 @@ int main(int argc, char** argv) {
     }
 
     // end of loop recap
-    printf("#%d population status:\n", h);
-    printPopulation();
+    //printf("#%d population status:\n", h);
+    //printPopulation();
     printf("outputting to trace file\n");
     printTrace(0);
   }

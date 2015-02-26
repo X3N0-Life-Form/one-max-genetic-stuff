@@ -1,15 +1,16 @@
 #include "select.h"
 
 #include <string.h>
+#include <stdio.h>
 
 Selection selectIdentify(char* arg) {
-  if (strcmp(arg, "best")) {
+  if (!strcmp(arg, "best")) {
     return BEST;
-  } else if (strcmp(arg, "random")) {
+  } else if (!strcmp(arg, "random")) {
     return RANDOM;
-  } else if (strcmp(arg, "worst_best")) {
+  } else if (!strcmp(arg, "worst_best")) {
     return WORST_BEST;
-  } else if (strcmp(arg, "tournament")) {
+  } else if (!strcmp(arg, "tournament")) {
     return TOURNAMENT;
   } else {
     return RANDOM;
@@ -106,6 +107,7 @@ unsigned int* selectTargetsForTournament(unsigned int t) {
     }
     // if not, select it
     if (!getAnother) {
+      printf("ssss %d", count);
       res[count] = selection;
       count++;
     }

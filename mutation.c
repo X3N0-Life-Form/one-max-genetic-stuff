@@ -3,9 +3,9 @@
 #include <string.h>
 
 Mutation mutateIdentify(char* arg) {
-  if (strcmp(arg, "bit_flip")) {
+  if (!strcmp(arg, "bit_flip")) {
     return BIT_FLIP;
-  } else if (strcmp(arg, "k_flip")) {
+  } else if (!strcmp(arg, "k_flip")) {
     return K_FLIP;
   } else {
     return K_FLIP;

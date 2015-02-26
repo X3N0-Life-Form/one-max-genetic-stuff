@@ -3,9 +3,9 @@
 #include <string.h>
 
 Crossover crossIdentify(char* arg) {
-  if (strcmp(arg, "cross_point")) {
+  if (!strcmp(arg, "cross_point")) {
     return CROSS_POINT;
-  } else if (strcmp(arg, "cross_uniform")) {
+  } else if (!strcmp(arg, "cross_uniform")) {
     return CROSS_UNIFORM;
   } else {
     return CROSS_UNIFORM;

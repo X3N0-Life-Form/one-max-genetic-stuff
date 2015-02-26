@@ -11,7 +11,7 @@ run: One-Future
 	./One-Future
 
 One-Future: ${OF_REQ}
-	gcc ${OF_REQ} -o $@ -lm
+	gcc ${OF_REQ} -o $@ -lm -g
 
 smart_mutate.o: smart_mutate.c
 	gcc $< -c -std=c99 -Wall

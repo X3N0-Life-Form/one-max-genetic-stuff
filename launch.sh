@@ -10,6 +10,8 @@ k=3
 # compare_with_parents, age, replace_worst
 insert="replace_worst"
 
+options="-select $select -cross $cross -mutate $mutate -k $k -insert $insert"
+
 loopCount=1
 
 make
@@ -23,6 +25,6 @@ fi
 for i in `seq 1 $loopCount`
 do
     echo "Loop #$i/$loopCount"
-    ./One-Future -select $select -cross $cross -mutate $mutate -k $k -insert $insert
+    ./One-Future $options -automate
     sleep 1
 done

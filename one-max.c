@@ -180,6 +180,8 @@ void dealWithArgs(int argc, char** argv) {
       k = atoi(argv[++i]);
     } else if (!strcmp(argv[i], "-insert")) {
       insertion = insertIdentify(argv[++i]);
+    } else if (!strcmp(argv[i], "-automate")) {
+      automate = 1;
     } else {
       printf("\nUnrecognised argument: %s", argv[i]);
     }
@@ -267,7 +269,7 @@ char* getTraceFileName(char* name) {
 ////////////
 
 int main(int argc, char** argv) {
-  //automate = 1;
+  automate = 0;
   stats.bit_flips = 1;
   stats.bit_flip_gain = 1;
   stats.k_flips = 1;

@@ -163,6 +163,7 @@ void printTrace(int iteration) {
 
 void dealWithArgs(int argc, char** argv) {
   for (int i = 1; i < argc - 1; i++) {
+    //printf("arg: %s\n", argv[i]);
     if (!strcmp(argv[i],  "-pop_size")) {
       pop_size = atoi(argv[++i]);
     } else if (!strcmp(argv[i], "-i")) {
@@ -296,7 +297,8 @@ int main(int argc, char** argv) {
   //fprintf(trace_file, "%s\n", getRecap(buffer));
   for (int h = 1; h <= numberOfIterations; h++) {
     if (automate) {
-      mutation = customThingy();
+      //mutation = customThingy();
+      mutation = adaptivePursuit();
       switch (mutation) {
       case BIT_FLIP:
 	printf("Automated choice: BIT_FLIP\n");

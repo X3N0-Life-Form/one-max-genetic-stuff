@@ -4,6 +4,12 @@
 #include "mutation.h"
 
 extern Stats stats;
+double ap_Pmax;
+double ap_Pmin;
+double ap_bfP;
+double ap_kfP;
+
+Mutation ap_getBest();
 
 Mutation proportionalRoulette();
 Mutation adaptivePursuit();

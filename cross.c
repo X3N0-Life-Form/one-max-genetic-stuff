@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #include "cross.h"
 
 #include <string.h>

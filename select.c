@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #include "select.h"
 
 #include <string.h>

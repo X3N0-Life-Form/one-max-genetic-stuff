@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #ifndef FLIP_H
 #define FLIP_H
 

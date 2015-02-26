@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #include "one-max.h"
 
 #include <stdlib.h>

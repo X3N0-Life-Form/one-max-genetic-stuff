@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #ifndef SMART_MUTATE_H
 #define SMART_MUTATE_H
 

@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #include "insert.h"
 
 #include <string.h>

@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #include "data.h"
 
 Instance* createInstance(Instance* instance) {

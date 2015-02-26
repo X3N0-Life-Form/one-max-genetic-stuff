@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #include "smart_mutate.h"
 
 #include <stdio.h>

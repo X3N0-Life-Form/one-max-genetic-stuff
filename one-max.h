@@ -1,3 +1,7 @@
+///
+/// Author: Adrien DROGUET
+///
+
 #ifndef ONE_MAX_H
 #define ONE_MAX_H
 
@@ -9,7 +13,7 @@
 #include "insert.h"
 
 #define POP_SIZE 200
-#define DEFAULT_SIZE 10
+#define DEFAULT_SIZE 1000
 #define DEFAULT_NUMBER_OF_ITERATIONS 300
 
 #define DEFAULT_K_FLIP 3

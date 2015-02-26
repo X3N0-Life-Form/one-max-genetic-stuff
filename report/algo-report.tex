@@ -64,8 +64,13 @@ Par défaut: \textit{Replace Worst}
 \pagebreak
 \section{Tests et résultats}
 Chaque graphique représente la moyenne de 10 lancement pour la configuration décrite.
+On notera que certaines configurations présentant peu d'intérêt ont été ignorées.
 
 \subsection{Configuration par défaut}
+Rappel: notre configurations par défaut utilise un sélection de type tournoi de taille 5, sur un population
+de 200 instances de 10 bits, et itère 300 fois en utilisant des mutations de type bit-flip, avec croisement par
+point et remplacement des pires instances.
+
 \begin{figure}[h]
   \begin{center}
     \includegraphics[width=320px]{images/graph-default.png}
@@ -73,6 +78,7 @@ Chaque graphique représente la moyenne de 10 lancement pour la configuration d�
   \caption{tournament - cross point - bit-flip - replace worst}
 \end{figure}
 
+\pagebreak
 \subsection{Variation de sélection}
 \subsubsection{Random}
 \begin{figure}[h]
@@ -124,9 +130,29 @@ Chaque graphique représente la moyenne de 10 lancement pour la configuration d�
 
 \chapter{Algorithmes autonomes}
 \section{Algorithmes considérés}
-\subsection{}
+Sur les 4 algorithmes proposés (roulette adaptative, adaptive pursuit, UCB et roulette uniforme), un seul a été implémenté,
+ainsi qu'un autre algorithme issu de mes propres réflexions.
+
+\begin{itemize}
+  \item \textbf{Adaptive Pursuit}
+  \item \textbf{Algorithme d'automatisation gain / modifications} : Algorithme personalisé, dans lequel la probablité de sélection
+	est fonction du gain acquis par rapport au nombre de modifications effectuées (nombre de bits ayant été inversés).
+\end{itemize}
+
 
 \section{Tests et résultats}
 
+Les deux algorithmes testés on un comportement similaire: en début de programme, ils alternent entre les différents types de mutation
+avant de fortement favoriser (sans forcement l'utiliser exclusivement) une des deux méthodes pour le reste de l'exécution.
 
-\end{document}          
+
+\chapter{Conclusion}
+
+Une variété de comportements, d'approches ont été implémentés pour la première partie du projet. En revanche, par manque de temps
+pour l'analyse, la compréhension et l'implémentation d'algorithmes adaptatifs, la deuxième partie a été séverement restreinte. \\ \\
+
+Globalement, la sélection par tournoi, le croisement par point et l'insertion par remplacement des pires instances se sont avérés
+être les approches les plus efficaces. Les mutations de type \textit{k-flip} sont plus efficaces pour de petites valeurs de k,
+typiquement entre 3 et 5.
+
+\end{document}

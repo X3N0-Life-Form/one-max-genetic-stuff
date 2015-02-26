@@ -151,12 +151,14 @@ void printRecap() {
 }
 
 void printTrace(int iteration) {
-  fprintf(trace_file, "%d,%d,%d,%d,%f\n",
+  if (iteration == 0)
+    fprintf(trace_file, "iteration,best,average,standard deviation");
+  fprintf(trace_file, "%d,%d,%d,%d\n",
 	  iteration,
 	  fitnessBest(),
 	  fitnessAverage(),
-	  fitnessStandardDeviation(),
-	  entropy());
+	  fitnessStandardDeviation());
+  //entropy());
 }
 
 void dealWithArgs(int argc, char** argv) {
@@ -244,6 +246,16 @@ char* getTraceFileName(char* name) {
 
   //iterations
   sprintf(buffer, "%d", numberOfIterations);
+  strcat(name, buffer);
+
+  //timestamp
+  char time_str[40];
+  time_t rawtime;
+  struct tm * timeinfo;
+  time (&rawtime);
+  timeinfo = localtime (&rawtime);
+  strftime(time_str, 40, "%F_%H-%M-%S", timeinfo);
+  sprintf(buffer, "__%s",time_str);
   strcat(name, buffer);
 
   strcat(name, ".csv");
@@ -359,7 +371,7 @@ int main(int argc, char** argv) {
     //printf("#%d population status:\n", h);
     //printPopulation();
     printf("outputting to trace file\n");
-    printTrace(0);
+    printTrace(h);
   }
   printRecap();
   fclose(trace_file);

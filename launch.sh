@@ -22,9 +22,11 @@ then
     loopCount=$1
 fi
 
+
 for i in `seq 1 $loopCount`
 do
     echo "Loop #$i/$loopCount"
-    ./One-Future $options -automate
+    echo ./One-Future -automate $options 
+    ./One-Future -automate $options
     sleep 1
 done

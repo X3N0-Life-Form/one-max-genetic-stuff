@@ -5,7 +5,7 @@ select="tournament"
 # cross_point, cross_uniform
 cross="cross_point"
 # bit_flip, k_flip
-mutate="k_flip"
+mutate="bit_flip"
 k=3
 # compare_with_parents, age, replace_worst
 insert="replace_worst"
